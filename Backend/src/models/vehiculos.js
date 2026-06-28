@@ -1,3 +1,13 @@
+/*
+Campos:
+    ConsumoGalon,
+    tipo,
+    nombre,
+    Alquiler,
+    idProveedor,
+    idCombustible
+*/
+
 import { Schema, model } from "mongoose";
 
 const vehiculosSchema = new Schema(
@@ -9,7 +19,7 @@ const vehiculosSchema = new Schema(
     idProveedor: { type: Schema.Types.ObjectId, ref: "Proveedores" },
     idCombustible: { type: Schema.Types.ObjectId, ref: "Combustible" },
   },
-  { timestamps: true, strict: false }
+  { timestamps: true, strict: false, collection: "Vehiculos" }
 );
 
 export default model("Vehiculos", vehiculosSchema);

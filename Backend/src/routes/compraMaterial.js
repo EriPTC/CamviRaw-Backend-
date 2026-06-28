@@ -1,15 +1,16 @@
 import express from "express";
-import compraMaterialController from "../controllers/compraMaterialController.js";
+import compraMaterialController from "../Controller/compraMaterialController.js";
 
 const router = express.Router();
 
 router.route("/")
-  .get(compraMaterialController.getCompras)
+  .post(compraMaterialController.getCompras);
+
+router.route("/insert")
   .post(compraMaterialController.insertCompra);
 
 router.route("/:id")
-  .get(compraMaterialController.getCompraById)
-  .put(compraMaterialController.updateCompra)
-  .delete(compraMaterialController.deleteCompra);
+  .delete(compraMaterialController.deleteCompra)
+  .put(compraMaterialController.updateCompra);
 
 export default router;

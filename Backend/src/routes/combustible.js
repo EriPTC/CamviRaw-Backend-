@@ -1,15 +1,16 @@
 import express from "express";
-import combustibleController from "../controllers/combustibleController.js";
+import combustibleController from "../Controller/combustibleController.js";
 
 const router = express.Router();
 
 router.route("/")
-  .get(combustibleController.getCombustibles)
+  .post(combustibleController.getCombustibles);
+
+router.route("/insert")
   .post(combustibleController.insertCombustible);
 
 router.route("/:id")
-  .get(combustibleController.getCombustibleById)
-  .put(combustibleController.updateCombustible)
-  .delete(combustibleController.deleteCombustible);
+  .delete(combustibleController.deleteCombustible)
+  .put(combustibleController.updateCombustible);
 
 export default router;

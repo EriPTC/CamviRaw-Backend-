@@ -1,15 +1,16 @@
 import express from "express";
-import gastosController from "../controllers/gastosController.js";
+import gastosController from "../Controller/gastosController.js";
 
 const router = express.Router();
 
 router.route("/")
-  .get(gastosController.getGastos)
+  .post(gastosController.getGastos);
+
+router.route("/insert")
   .post(gastosController.insertGasto);
 
 router.route("/:id")
-  .get(gastosController.getGastoById)
-  .put(gastosController.updateGasto)
-  .delete(gastosController.deleteGasto);
+  .delete(gastosController.deleteGasto)
+  .put(gastosController.updateGasto);
 
 export default router;

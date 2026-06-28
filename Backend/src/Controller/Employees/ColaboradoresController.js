@@ -3,6 +3,11 @@ import { v2 as cloudinary } from "cloudinary";
 import bcryptjs from "bcryptjs";
 
 const colaboradoresController = {};
+// ^$     = obligan a que toda la cadena cumpla la regla, no solo una parte
+// A-Za-z = letras sin tilde
+// \u00C0-\u017F = letras con tilde, eñes, ü, etc.
+// \s     = espacios
+// +      = mínimo 1 carácter (no vacío)
 const soloLetras = /^[A-Za-z\u00C0-\u017F\s]+$/;
 const telefonoRegex = /^\d{3,4}-\d{4}$/;
 const duiRegex = /^\d{8}-?\d$/;
@@ -16,8 +21,14 @@ const deleteUploadedImage = async (req) => {
 
 colaboradoresController.getColaboradores = async (req, res) => {
   try {
-    const colaboradores = await colaboradoresModel.find();
-    return res.status(200).json(colaboradores);
+    const page = parseInt(req.body?.page) || 1;
+    const limit = parseInt(req.body?.limit) || 20;
+    const skip = (page - 1) * limit;
+
+    const total = await colaboradoresModel.countDocuments();
+
+    const colaboradores = await colaboradoresModel.find().skip(skip).limit(limit);
+    return res.status(200).json({ colaboradores, total });
   } catch (error) {
     console.log("Error al obtener colaboradores: " + error);
     return res.status(500).json({ message: "Error interno del servidor" });

@@ -1,16 +1,16 @@
 import express from "express";
-import vehiculosController from "../controllers/vehiculosController.js";
-import upload from "../utils/cloudinaryConfig.js";
+import vehiculosController from "../Controller/vehiculosController.js";
 
 const router = express.Router();
 
 router.route("/")
-  .get(vehiculosController.getVehiculos)
-  .post(upload.single("imagen"), vehiculosController.insertVehiculo);
+  .post(vehiculosController.getVehiculos);
+
+router.route("/insert")
+  .post(vehiculosController.insertVehiculo);
 
 router.route("/:id")
-  .get(vehiculosController.getVehiculoById)
-  .put(upload.single("imagen"), vehiculosController.updateVehiculo)
-  .delete(vehiculosController.deleteVehiculo);
+  .delete(vehiculosController.deleteVehiculo)
+  .put(vehiculosController.updateVehiculo);
 
 export default router;

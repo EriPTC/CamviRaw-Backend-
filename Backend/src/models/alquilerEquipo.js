@@ -1,3 +1,11 @@
+/*
+Campos:
+    Nombre,
+    Precio,
+    Descripcion,
+    idProveedor
+*/
+
 import { Schema, model } from "mongoose";
 
 const alquilerEquipoSchema = new Schema(
@@ -7,7 +15,11 @@ const alquilerEquipoSchema = new Schema(
     Descripcion: { type: String },
     idProveedor: { type: Schema.Types.ObjectId, ref: "Proveedores" },
   },
-  { timestamps: true, strict: false }
+  { timestamps: true, 
+    strict: false, 
+    collection: "AlquilerEquipo",
+
+  } 
 );
 
 export default model("AlquilerEquipo", alquilerEquipoSchema);

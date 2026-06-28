@@ -3,12 +3,23 @@ import { v2 as cloudinary } from "cloudinary";
 import bcryptjs from "bcryptjs";
 
 const adminController = {};
+// ^$     = obligan a que toda la cadena cumpla la regla, no solo una parte
+// A-Za-z = letras sin tilde
+// \u00C0-\u017F = letras con tilde, eñes, ü, etc.
+// \s     = espacios
+// +      = mínimo 1 carácter (no vacío)
 const soloLetras = /^[A-Za-z\u00C0-\u017F\s]+$/;
 
 adminController.getAdmin = async (req, res) => {
   try {
-    const admin = await adminModels.find();
-    return res.status(200).json(admin);
+    const page = parseInt(req.body?.page) || 1;
+    const limit = parseInt(req.body?.limit) || 20;
+    const skip = (page - 1) * limit;
+
+    const total = await adminModels.countDocuments();
+
+    const admin = await adminModels.find().skip(skip).limit(limit);
+    return res.status(200).json({ admin, total });
   } catch (error) {
     console.log("Error al obtener admins: " + error);
     return res.status(500).json({ message: "Error interno del servidor" });

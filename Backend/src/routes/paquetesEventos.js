@@ -1,15 +1,16 @@
 import express from "express";
-import paquetesEventosController from "../controllers/paquetesEventosController.js";
+import paquetesEventosController from "../Controller/paquetesEventosController.js";
 
 const router = express.Router();
 
 router.route("/")
-  .get(paquetesEventosController.getPaquetes)
+  .post(paquetesEventosController.getPaquetes);
+
+router.route("/insert")
   .post(paquetesEventosController.insertPaquete);
 
 router.route("/:id")
-  .get(paquetesEventosController.getPaqueteById)
-  .put(paquetesEventosController.updatePaquete)
-  .delete(paquetesEventosController.deletePaquete);
+  .delete(paquetesEventosController.deletePaquete)
+  .put(paquetesEventosController.updatePaquete);
 
 export default router;

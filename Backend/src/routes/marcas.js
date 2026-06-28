@@ -1,16 +1,16 @@
 import express from "express";
-import marcasController from "../controllers/marcasController.js";
-import upload from "../utils/cloudinaryConfig.js";
+import marcasController from "../Controller/marcasController.js";
 
 const router = express.Router();
 
 router.route("/")
-  .get(marcasController.getMarcas)
-  .post(upload.single("imagen"), marcasController.insertMarca);
+  .post(marcasController.getMarcas);
+
+router.route("/insert")
+  .post(marcasController.insertMarca);
 
 router.route("/:id")
-  .get(marcasController.getMarcaById)
-  .put(upload.single("imagen"), marcasController.updateMarca)
-  .delete(marcasController.deleteMarca);
+  .delete(marcasController.deleteMarca)
+  .put(marcasController.updateMarca);
 
 export default router;

@@ -5,7 +5,8 @@ import AdminController from '../../Controller/Admin/AdminController.js';
 const router = express.Router();
 
 router.route('/')
-    .get(AdminController.getAdmin)   
+    .get(AdminController.getAdmin)
+    .post(AdminController.getAdmin);
     
 router.route('/:id')
     .delete(AdminController.deleteAdmin)

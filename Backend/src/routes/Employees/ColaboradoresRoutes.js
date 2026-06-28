@@ -5,7 +5,8 @@ import colaboradoresController from '../../Controller/Employees/ColaboradoresCon
 const router = express.Router();
 
 router.route('/')
-    .get(colaboradoresController.getColaboradores);
+    .get(colaboradoresController.getColaboradores)
+    .post(colaboradoresController.getColaboradores);
 
 router.route('/:id')
     .delete(colaboradoresController.deleteColaborador)

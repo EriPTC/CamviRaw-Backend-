@@ -3,6 +3,11 @@ import { v2 as cloudinary } from "cloudinary";
 import bcryptjs from "bcryptjs";
 
 const clientesController = {};
+// ^$     = obligan a que toda la cadena cumpla la regla, no solo una parte
+// A-Za-z = letras sin tilde
+// \u00C0-\u017F = letras con tilde, eñes, ü, etc.
+// \s     = espacios
+// +      = mínimo 1 carácter (no vacío)
 const soloLetras = /^[A-Za-z\u00C0-\u017F\s]+$/;
 const telefonoRegex = /^\d{3,4}-\d{4}$/;
 

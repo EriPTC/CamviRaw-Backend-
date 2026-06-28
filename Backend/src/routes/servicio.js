@@ -1,15 +1,16 @@
 import express from "express";
-import servicioController from "../controllers/servicioController.js";
+import servicioController from "../Controller/servicioController.js";
 
 const router = express.Router();
 
 router.route("/")
-  .get(servicioController.getServicios)
+  .post(servicioController.getServicios);
+
+router.route("/insert")
   .post(servicioController.insertServicio);
 
 router.route("/:id")
-  .get(servicioController.getServicioById)
-  .put(servicioController.updateServicio)
-  .delete(servicioController.deleteServicio);
+  .delete(servicioController.deleteServicio)
+  .put(servicioController.updateServicio);
 
 export default router;

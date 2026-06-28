@@ -1,14 +1,30 @@
+/*
+Campos:
+    nombreServicio,
+    idTipoServicio,
+    precio,
+    fotos[{Cantidad, medidas}]
+*/
+
 import { Schema, model } from "mongoose";
 
 const servicioSchema = new Schema(
   {
-    NombreServicio: { type: String },
-    TipoServicio: { type: String },
-    Precio: { type: Number },
-    equipo: [{ type: Schema.Types.ObjectId, ref: "Inventario" }],
-    idFotos: [{ type: Schema.Types.ObjectId, ref: "Fotos" }],
+    nombreServicio: { type: String },
+    idTipoServicio: { type: Schema.Types.ObjectId, ref: "TipoServicio" },
+    precio: { type: Number },
+    fotos: [
+      {
+        Cantidad: { type: Number },
+        medidas: { type: String },
+      },
+    ],
   },
-  { timestamps: true, strict: false }
+  {
+    timestamps: true,
+    strict: false,
+    collection: "Servicio",
+  },
 );
 
 export default model("Servicio", servicioSchema);

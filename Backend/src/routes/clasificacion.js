@@ -1,15 +1,16 @@
 import express from "express";
-import clasificacionController from "../controllers/clasificacionController.js";
+import clasificacionController from "../Controller/clasificacionController.js";
 
 const router = express.Router();
 
 router.route("/")
-  .get(clasificacionController.getClasificaciones)
+  .post(clasificacionController.getClasificaciones);
+
+router.route("/insert")
   .post(clasificacionController.insertClasificacion);
 
 router.route("/:id")
-  .get(clasificacionController.getClasificacionById)
-  .put(clasificacionController.updateClasificacion)
-  .delete(clasificacionController.deleteClasificacion);
+  .delete(clasificacionController.deleteClasificacion)
+  .put(clasificacionController.updateClasificacion);
 
 export default router;

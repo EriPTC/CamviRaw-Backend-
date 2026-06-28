@@ -1,3 +1,13 @@
+/*
+Campos:
+    Nombre,
+    telefono,
+    correo,
+    imagen,
+    idMarketing,
+    descripcion
+*/
+
 import { Schema, model } from "mongoose";
 
 const marcasSchema = new Schema(
@@ -6,9 +16,10 @@ const marcasSchema = new Schema(
     telefono: { type: String },
     correo: { type: String },
     imagen: { type: String },
-    tipoPaquete: { type: String }
+    idMarketing: { type: Schema.Types.ObjectId, ref: "Marketing" },
+    descripcion: { type: String },
   },
-  { timestamps: true, strict: false }
+  { timestamps: true, strict: false, collection: "Marcas" },
 );
 
 export default model("Marcas", marcasSchema);

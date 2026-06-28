@@ -1,15 +1,16 @@
 import express from "express";
-import inventarioController from "../controllers/inventarioController.js";
+import inventarioController from "../Controller/inventarioController.js";
 
 const router = express.Router();
 
 router.route("/")
-  .get(inventarioController.getInventario)
+  .post(inventarioController.getInventario);
+
+router.route("/insert")
   .post(inventarioController.insertInventario);
 
 router.route("/:id")
-  .get(inventarioController.getInventarioById)
-  .put(inventarioController.updateInventario)
-  .delete(inventarioController.deleteInventario);
+  .delete(inventarioController.deleteInventario)
+  .put(inventarioController.updateInventario);
 
 export default router;
