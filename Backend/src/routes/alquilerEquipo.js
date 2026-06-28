@@ -1,6 +1,7 @@
 import express from "express";
 import alquilerEquipoController from "../Controller/alquilerEquipoController.js";
 
+
 const router = express.Router();
 
 router.route("/")
